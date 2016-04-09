@@ -11,6 +11,6 @@ interface AppComponent {
 
     fun inject(mainActivity: MainActivity)
 
-    fun inject(mainActivity: ScanActivity)
+    fun inject(scanActivity: ScanActivity)
 
 }
