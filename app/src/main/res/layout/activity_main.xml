@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="1000"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
     </FrameLayout>
   </LinearLayout>
 </RelativeLayout>
