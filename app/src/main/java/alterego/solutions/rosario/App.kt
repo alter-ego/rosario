@@ -6,6 +6,7 @@ import alterego.solutions.rosario.di.DaggerAppComponent
 import alterego.solutions.rosario.di.ManagersModule
 import android.app.Application
 import android.content.Context
+import com.firebase.client.Firebase
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
 import org.udoo.udooblulib.manager.UdooBluManager
@@ -31,7 +32,7 @@ class App : Application() {
 
         udooBluManager = UdooBluManager(this);
 
-
+        Firebase.setAndroidContext(this);
     }
 
     fun component(): AppComponent {
