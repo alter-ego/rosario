@@ -36,21 +36,21 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="center"
-      android:text="Enunciazione"
-      android:textSize="20sp" />
+      tools:text="Enunciazione"
+      android:textSize="20sp"/>
 
     <FrameLayout
-    android:id="@+id/seekArcContainer"
-    android:layout_width="180dp"
-    android:layout_height="180dp">
+      android:id="@+id/seekArcContainer"
+      android:layout_width="180dp"
+      android:layout_height="180dp">
 
       <TextView
-      android:id="@+id/seekArcProgress"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:text="1000"
-      android:textSize="20sp" />
+        android:id="@+id/seekArcProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="1000"
+        android:textSize="20sp"/>
 
       <com.triggertrap.seekarc.SeekArc
         android:id="@+id/seekArc"
@@ -80,10 +80,10 @@
         android:id="@+id/seekArc1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        seekarc:arcColor="@color/colorPrimaryDark"
+        seekarc:arcColor="@color/primary_dark"
         seekarc:clockwise="true"
         seekarc:max="6"
-        seekarc:progressColor="@color/colorPrimary"
+        seekarc:progressColor="@color/primary"
         seekarc:rotation="180"
         seekarc:startAngle="30"
         seekarc:sweepAngle="300"
@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="1000"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
     </FrameLayout>
   </LinearLayout>
 </RelativeLayout>
