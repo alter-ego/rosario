@@ -1,5 +1,9 @@
-package alterego.solutions.rosario
+package alterego.solutions.rosario.second
 
+import alterego.solutions.rosario.App
+import alterego.solutions.rosario.R
+import alterego.solutions.rosario.ScanActivity
+import alterego.solutions.rosario.main.PresenterMain
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -8,7 +12,7 @@ import android.view.MenuItem
 import android.widget.TextView
 import com.triggertrap.seekarc.SeekArc
 
-class MainActivity : AppCompatActivity() {
+class SecondActivity : AppCompatActivity() {
 
     lateinit var mSeekark: SeekArc
     lateinit var mSeekarcprogress: TextView
@@ -17,8 +21,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_second)
         App[this].component().inject(this);
-        setContentView(R.layout.activity_main)
 
         mSeekarcprogress = findViewById(R.id.seekArcProgress) as TextView
         mSeekarcprogress1 = findViewById(R.id.seekArcProgress1) as TextView
@@ -26,11 +30,20 @@ class MainActivity : AppCompatActivity() {
         mSeekark = findViewById(R.id.seekArc) as SeekArc
         mSeekark1 = findViewById(R.id.seekArc1) as SeekArc
 
+        //TODO Check if presenter value Enunciazione value is <=11
+        val secondPresenter = PresenterSecond(2, 2)
+
+        mSeekarcprogress.setText(secondPresenter.positionEnunciazione.toString())
+        mSeekark.progress = secondPresenter.positionEnunciazione
+
+
+        mSeekarcprogress1.setText(secondPresenter.positionDecine.toString())
+        mSeekark1.progress = secondPresenter.positionDecine
+
         mSeekark.setOnSeekArcChangeListener(object : SeekArc.OnSeekArcChangeListener {
 
             override fun onProgressChanged(p0: SeekArc?, p1: Int, p2: Boolean) {
-                mSeekarcprogress.setText(p1.toString())
-                mSeekark1.progress = p1
+                //TODO add some reaction in case of modify from android app
             }
 
             override fun onStartTrackingTouch(p0: SeekArc?) {
@@ -57,4 +70,5 @@ class MainActivity : AppCompatActivity() {
         }
         return true;
     }
+
 }

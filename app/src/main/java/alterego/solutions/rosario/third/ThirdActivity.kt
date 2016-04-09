@@ -1,5 +1,9 @@
-package alterego.solutions.rosario
+package alterego.solutions.rosario.third
 
+import alterego.solutions.rosario.App
+import alterego.solutions.rosario.R
+import alterego.solutions.rosario.ScanActivity
+import alterego.solutions.rosario.main.PresenterMain
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -31,11 +35,20 @@ class ThirdActivity : AppCompatActivity() {
         mSeekark = findViewById(R.id.seekArc) as SeekArc
         mSeekark1 = findViewById(R.id.seekArc1) as SeekArc
 
+        //TODO Check if presenter value Enunciazione value is <=1
+        val thirdPresenter = PresenterThird(3, 3)
+
+        mSeekarcprogress.setText(thirdPresenter.positionEnunciazione.toString())
+        mSeekark.progress = thirdPresenter.positionEnunciazione
+
+
+        mSeekarcprogress1.setText(thirdPresenter.positionDecine.toString())
+        mSeekark1.progress = thirdPresenter.positionDecine
+
         mSeekark.setOnSeekArcChangeListener(object : SeekArc.OnSeekArcChangeListener {
 
             override fun onProgressChanged(p0: SeekArc?, p1: Int, p2: Boolean) {
-                mSeekarcprogress.setText(p1.toString())
-                mSeekark1.progress = p1
+                //TODO add some reaction in case of modify from android app
             }
 
             override fun onStartTrackingTouch(p0: SeekArc?) {
