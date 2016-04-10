@@ -1,8 +1,9 @@
-package alterego.solutions.rosario.third
+package alterego.solutions.rosario.screens.main
 
 import alterego.solutions.rosario.interfaces.IPresenter
 
-class PresenterThird(val positionEnunciazione : Int, val positionDecine: Int): IPresenter {
+
+class PresenterMain(val positionEnunciazione : Int, val positionDecine: Int) : IPresenter {
 
     override fun moveEnunciazioneTo(): Int {
         return positionEnunciazione

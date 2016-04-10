@@ -1,22 +1,17 @@
-package alterego.solutions.rosario.third
+package alterego.solutions.rosario.screens.main
 
 import alterego.solutions.rosario.App
 import alterego.solutions.rosario.R
 import alterego.solutions.rosario.ScanActivity
-import alterego.solutions.rosario.main.PresenterMain
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.TextView
 import com.triggertrap.seekarc.SeekArc
 
-class ThirdActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     lateinit var mSeekark: SeekArc
     lateinit var mSeekarcprogress: TextView
@@ -25,9 +20,8 @@ class ThirdActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_third)
-
         App[this].component().inject(this);
+        setContentView(R.layout.activity_main)
 
         mSeekarcprogress = findViewById(R.id.seekArcProgress) as TextView
         mSeekarcprogress1 = findViewById(R.id.seekArcProgress1) as TextView
@@ -35,15 +29,15 @@ class ThirdActivity : AppCompatActivity() {
         mSeekark = findViewById(R.id.seekArc) as SeekArc
         mSeekark1 = findViewById(R.id.seekArc1) as SeekArc
 
-        //TODO Check if presenter value Enunciazione value is <=1
-        val thirdPresenter = PresenterThird(3, 3)
+        //TODO Check if presenter value Enunciazione value is <=5
+        val mainPresenter = PresenterMain(1, 1)
 
-        mSeekarcprogress.setText(thirdPresenter.positionEnunciazione.toString())
-        mSeekark.progress = thirdPresenter.positionEnunciazione
+        mSeekarcprogress.setText(mainPresenter.positionEnunciazione.toString())
+        mSeekark.progress = mainPresenter.positionEnunciazione
 
 
-        mSeekarcprogress1.setText(thirdPresenter.positionDecine.toString())
-        mSeekark1.progress = thirdPresenter.positionDecine
+        mSeekarcprogress1.setText(mainPresenter.positionDecine.toString())
+        mSeekark1.progress = mainPresenter.positionDecine
 
         mSeekark.setOnSeekArcChangeListener(object : SeekArc.OnSeekArcChangeListener {
 
@@ -52,12 +46,10 @@ class ThirdActivity : AppCompatActivity() {
             }
 
             override fun onStartTrackingTouch(p0: SeekArc?) {
-                //mSeekarcprogress.setText(p0.toString())
+
             }
 
-            override fun onStopTrackingTouch(p0: SeekArc?) {
-                //mSeekarcprogress.setText(p0.toString())
-            }
+            override fun onStopTrackingTouch(p0: SeekArc?) {}
 
         })
     }
@@ -75,5 +67,4 @@ class ThirdActivity : AppCompatActivity() {
         }
         return true;
     }
-
 }

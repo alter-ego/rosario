@@ -1,4 +1,4 @@
-package alterego.solutions.rosario.second
+package alterego.solutions.rosario.screens.second
 
 import alterego.solutions.rosario.interfaces.IPresenter
 

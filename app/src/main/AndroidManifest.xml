@@ -19,7 +19,7 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
     tools:replace="android:icon">
-    <activity android:name=".main.MainActivity">
+    <activity android:name=".screens.main.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
@@ -35,10 +35,10 @@
       android:name=".ScanActivity"
       android:label="Settings"/>
 
-    <activity android:name=".second.SecondActivity">
+    <activity android:name=".screens.second.SecondActivity">
     </activity>
 
-    <activity android:name=".third.ThirdActivity">
+    <activity android:name=".screens.third.ThirdActivity">
     </activity>
 
   </application>

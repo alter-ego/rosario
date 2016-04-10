@@ -1,18 +1,22 @@
-package alterego.solutions.rosario.second
+package alterego.solutions.rosario.screens.third
 
 import alterego.solutions.rosario.App
 import alterego.solutions.rosario.R
 import alterego.solutions.rosario.ScanActivity
-import alterego.solutions.rosario.main.PresenterMain
+import alterego.solutions.rosario.screens.main.PresenterMain
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import com.triggertrap.seekarc.SeekArc
 
-class SecondActivity : AppCompatActivity() {
+class ThirdActivity : AppCompatActivity() {
 
     lateinit var mSeekark: SeekArc
     lateinit var mSeekarcprogress: TextView
@@ -21,7 +25,8 @@ class SecondActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_second)
+        setContentView(R.layout.activity_third)
+
         App[this].component().inject(this);
 
         mSeekarcprogress = findViewById(R.id.seekArcProgress) as TextView
@@ -30,15 +35,15 @@ class SecondActivity : AppCompatActivity() {
         mSeekark = findViewById(R.id.seekArc) as SeekArc
         mSeekark1 = findViewById(R.id.seekArc1) as SeekArc
 
-        //TODO Check if presenter value Enunciazione value is <=11
-        val secondPresenter = PresenterSecond(2, 2)
+        //TODO Check if presenter value Enunciazione value is <=1
+        val thirdPresenter = PresenterThird(3, 3)
 
-        mSeekarcprogress.setText(secondPresenter.positionEnunciazione.toString())
-        mSeekark.progress = secondPresenter.positionEnunciazione
+        mSeekarcprogress.setText(thirdPresenter.positionEnunciazione.toString())
+        mSeekark.progress = thirdPresenter.positionEnunciazione
 
 
-        mSeekarcprogress1.setText(secondPresenter.positionDecine.toString())
-        mSeekark1.progress = secondPresenter.positionDecine
+        mSeekarcprogress1.setText(thirdPresenter.positionDecine.toString())
+        mSeekark1.progress = thirdPresenter.positionDecine
 
         mSeekark.setOnSeekArcChangeListener(object : SeekArc.OnSeekArcChangeListener {
 
