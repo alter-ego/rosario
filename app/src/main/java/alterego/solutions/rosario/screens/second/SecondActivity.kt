@@ -3,7 +3,6 @@ package alterego.solutions.rosario.screens.second
 import alterego.solutions.rosario.App
 import alterego.solutions.rosario.R
 import alterego.solutions.rosario.ScanActivity
-import alterego.solutions.rosario.screens.main.PresenterMain
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -29,16 +28,6 @@ class SecondActivity : AppCompatActivity() {
 
         mSeekark = findViewById(R.id.seekArc) as SeekArc
         mSeekark1 = findViewById(R.id.seekArc1) as SeekArc
-
-        //TODO Check if presenter value Enunciazione value is <=11
-        val secondPresenter = PresenterSecond(2, 2)
-
-        mSeekarcprogress.setText(secondPresenter.positionEnunciazione.toString())
-        mSeekark.progress = secondPresenter.positionEnunciazione
-
-
-        mSeekarcprogress1.setText(secondPresenter.positionDecine.toString())
-        mSeekark1.progress = secondPresenter.positionDecine
 
         mSeekark.setOnSeekArcChangeListener(object : SeekArc.OnSeekArcChangeListener {
 

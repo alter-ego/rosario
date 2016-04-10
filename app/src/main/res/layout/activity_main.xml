@@ -45,7 +45,7 @@
       android:layout_height="180dp">
 
       <TextView
-        android:id="@+id/seekArcProgress"
+        android:id="@+id/enunciazioneMainText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -53,7 +53,7 @@
         android:textSize="20sp"/>
 
       <com.triggertrap.seekarc.SeekArc
-        android:id="@+id/seekArc"
+        android:id="@+id/enunciazioneMainSeek"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="30dp"
@@ -77,7 +77,7 @@
       android:layout_height="180dp">
 
       <com.triggertrap.seekarc.SeekArc
-        android:id="@+id/seekArc1"
+        android:id="@+id/decineMainSeek"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         seekarc:arcColor="@color/primary_dark"
@@ -95,7 +95,7 @@
         android:paddingBottom="30dp"/>
 
       <TextView
-        android:id="@+id/seekArcProgress1"
+        android:id="@+id/decineMainText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
