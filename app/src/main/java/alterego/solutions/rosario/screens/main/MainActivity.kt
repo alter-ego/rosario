@@ -3,43 +3,47 @@ package alterego.solutions.rosario.screens.main
 import alterego.solutions.rosario.App
 import alterego.solutions.rosario.R
 import alterego.solutions.rosario.ScanActivity
+import alterego.solutions.rosario.input_button.IInputButtonManager
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.TextView
 import com.triggertrap.seekarc.SeekArc
+import kotlinx.android.synthetic.main.activity_main.seekArc
+import kotlinx.android.synthetic.main.activity_main.seekArc1
+import kotlinx.android.synthetic.main.activity_main.seekArcProgress
+import kotlinx.android.synthetic.main.activity_main.seekArcProgress1
+import timber.log.Timber
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var mSeekark: SeekArc
-    lateinit var mSeekarcprogress: TextView
-    lateinit var mSeekark1: SeekArc
-    lateinit var mSeekarcprogress1: TextView
+    @Inject
+    lateinit var inputButton: IInputButtonManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         App[this].component().inject(this);
         setContentView(R.layout.activity_main)
 
-        mSeekarcprogress = findViewById(R.id.seekArcProgress) as TextView
-        mSeekarcprogress1 = findViewById(R.id.seekArcProgress1) as TextView
-
-        mSeekark = findViewById(R.id.seekArc) as SeekArc
-        mSeekark1 = findViewById(R.id.seekArc1) as SeekArc
+        inputButton
+            .connect()
+            .concatMap { inputButton.read() }
+            .subscribe({
+                Timber.d(it.toString())
+            })
 
         //TODO Check if presenter value Enunciazione value is <=5
         val mainPresenter = PresenterMain(1, 1)
 
-        mSeekarcprogress.setText(mainPresenter.positionEnunciazione.toString())
-        mSeekark.progress = mainPresenter.positionEnunciazione
+        seekArcProgress.text = mainPresenter.positionEnunciazione.toString()
+        seekArc.progress = mainPresenter.positionEnunciazione
 
+        seekArcProgress1.text = mainPresenter.positionDecine.toString()
+        seekArc1.progress = mainPresenter.positionDecine
 
-        mSeekarcprogress1.setText(mainPresenter.positionDecine.toString())
-        mSeekark1.progress = mainPresenter.positionDecine
-
-        mSeekark.setOnSeekArcChangeListener(object : SeekArc.OnSeekArcChangeListener {
+        seekArc.setOnSeekArcChangeListener(object : SeekArc.OnSeekArcChangeListener {
 
             override fun onProgressChanged(p0: SeekArc?, p1: Int, p2: Boolean) {
                 //TODO add some reaction in case of modify from android app
@@ -49,8 +53,8 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            override fun onStopTrackingTouch(p0: SeekArc?) {}
-
+            override fun onStopTrackingTouch(p0: SeekArc?) {
+            }
         })
     }
 

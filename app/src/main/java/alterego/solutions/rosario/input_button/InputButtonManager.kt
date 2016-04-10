@@ -1,4 +1,4 @@
-package alterego.solutions.rosario
+package alterego.solutions.rosario.input_button
 
 import org.udoo.udooblulib.interfaces.IBleDeviceListener
 import org.udoo.udooblulib.interfaces.OnCharacteristicsListener
@@ -14,7 +14,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class InputButtonManager @Inject constructor(val udooBluManager: UdooBluManager) {
+class InputButtonManager @Inject constructor(val udooBluManager: UdooBluManager) : IInputButtonManager {
 
     val address = "B0:B4:48:C3:B1:81"
 
@@ -22,26 +22,30 @@ class InputButtonManager @Inject constructor(val udooBluManager: UdooBluManager)
 
     var button: BehaviorSubject<Int> = BehaviorSubject.create()
 
-    fun connect() {
-        udooBluManager.connect(address, object : IBleDeviceListener {
-            override fun onDeviceConnected() {
-                udooBluManager.discoveryServices(address)
-            }
+    override fun connect(): Observable<Boolean> {
+        return Observable.create {
+            val subscriber = it
+            udooBluManager.connect(address, object : IBleDeviceListener {
+                override fun onDeviceConnected() {
+                    udooBluManager.discoveryServices(address)
+                    subscriber.onNext(true)
+                }
 
-            override fun onDeviceDisconnect() {
-            }
+                override fun onDeviceDisconnect() {
+                    subscriber.onNext(false)
+                }
 
-            override fun onServicesDiscoveryCompleted() {
-                val address = address
-                Timber.d("Address $address")
-
-                udooBluManager.enableSensor(address, UDOOBLESensor.IOPIN, true)
-                udooBluManager.setIoPinMode(address, Constant.IOPIN.D6, Constant.IOPIN_TYPE.DIGITAL, Constant.IOPIN_MODE.INPUT)
-            }
-        })
+                override fun onServicesDiscoveryCompleted() {
+                    val address = address
+                    Timber.d("Address $address")
+                    udooBluManager.enableSensor(address, UDOOBLESensor.IOPIN, true)
+                    udooBluManager.setIoPinMode(address, Constant.IOPIN.D6, Constant.IOPIN_TYPE.DIGITAL, Constant.IOPIN_MODE.INPUT)
+                }
+            })
+        }
     }
 
-    fun read() {
+    override fun read(): Observable<Int> {
         readSubscription = Observable.interval(300, TimeUnit.MILLISECONDS)
             .subscribe({
                 udooBluManager.digitalRead(address, object : OnCharacteristicsListener {
@@ -55,6 +59,7 @@ class InputButtonManager @Inject constructor(val udooBluManager: UdooBluManager)
                     }
                 })
             })
+        return button
     }
 
     fun dispose() {
