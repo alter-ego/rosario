@@ -1,5 +1,6 @@
 package alterego.solutions.rosario.di
 
+import alterego.solutions.rosario.InputButtonManager
 import alterego.solutions.rosario.storage.IStorageManager
 import alterego.solutions.rosario.storage.StorageManager
 import android.content.Context
@@ -28,5 +29,11 @@ class ManagersModule() {
     @Singleton
     fun provideStorageManager(firebase: Firebase): IStorageManager {
         return StorageManager(firebase)
+    }
+
+    @Provides
+    @Singleton
+    fun providesInputButtonManager(udooBluManager: UdooBluManager): InputButtonManager {
+        return InputButtonManager(udooBluManager)
     }
 }
