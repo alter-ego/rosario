@@ -1,7 +1,9 @@
 
 package alterego.solutions.rosario.storage;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -14,98 +16,56 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
-    "croce",
-    "granogrande",
-    "granopiccolo"
+    "name",
+    "steps"
 })
 public class Introduzione {
 
-    @JsonProperty("croce")
-    private String croce;
-    @JsonProperty("granogrande")
-    private String granogrande;
-    @JsonProperty("granopiccolo")
-    private String granopiccolo;
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("steps")
+    private List<String> steps = new ArrayList<String>();
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     * No args constructor for use in serialization
      * 
+     * @return
+     *     The name
      */
-    public Introduzione() {
+    @JsonProperty("name")
+    public String getName() {
+        return name;
     }
 
     /**
      * 
-     * @param granogrande
-     * @param croce
-     * @param granopiccolo
+     * @param name
+     *     The name
      */
-    public Introduzione(String croce, String granogrande, String granopiccolo) {
-        this.croce = croce;
-        this.granogrande = granogrande;
-        this.granopiccolo = granopiccolo;
+    @JsonProperty("name")
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
      * 
      * @return
-     *     The croce
+     *     The steps
      */
-    @JsonProperty("croce")
-    public String getCroce() {
-        return croce;
+    @JsonProperty("steps")
+    public List<String> getSteps() {
+        return steps;
     }
 
     /**
      * 
-     * @param croce
-     *     The croce
+     * @param steps
+     *     The steps
      */
-    @JsonProperty("croce")
-    public void setCroce(String croce) {
-        this.croce = croce;
-    }
-
-    /**
-     * 
-     * @return
-     *     The granogrande
-     */
-    @JsonProperty("granogrande")
-    public String getGranogrande() {
-        return granogrande;
-    }
-
-    /**
-     * 
-     * @param granogrande
-     *     The granogrande
-     */
-    @JsonProperty("granogrande")
-    public void setGranogrande(String granogrande) {
-        this.granogrande = granogrande;
-    }
-
-    /**
-     * 
-     * @return
-     *     The granopiccolo
-     */
-    @JsonProperty("granopiccolo")
-    public String getGranopiccolo() {
-        return granopiccolo;
-    }
-
-    /**
-     * 
-     * @param granopiccolo
-     *     The granopiccolo
-     */
-    @JsonProperty("granopiccolo")
-    public void setGranopiccolo(String granopiccolo) {
-        this.granopiccolo = granopiccolo;
+    @JsonProperty("steps")
+    public void setSteps(List<String> steps) {
+        this.steps = steps;
     }
 
     @JsonAnyGetter

@@ -6,8 +6,12 @@ import com.firebase.client.FirebaseError
 import com.firebase.client.ValueEventListener
 import rx.Observable
 import timber.log.Timber
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class StorageManager(val firebase: Firebase) : IStorageManager {
+@Singleton
+class StorageManager @Inject constructor(val firebase: Firebase) : IStorageManager {
+
     override fun getDay(day: String): Observable<WeekDay> {
         return Observable.create {
             firebase.child(day).addListenerForSingleValueEvent(object : ValueEventListener {

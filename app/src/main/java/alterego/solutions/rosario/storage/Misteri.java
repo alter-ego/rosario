@@ -16,32 +16,35 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
-    "name",
-    "misterilist"
+    "misterilist",
+    "name"
 })
 public class Misteri {
 
-    @JsonProperty("name")
-    private String name;
     @JsonProperty("misterilist")
     private List<String> misterilist = new ArrayList<String>();
+    @JsonProperty("name")
+    private String name;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     * No args constructor for use in serialization
      * 
+     * @return
+     *     The misterilist
      */
-    public Misteri() {
+    @JsonProperty("misterilist")
+    public List<String> getMisterilist() {
+        return misterilist;
     }
 
     /**
      * 
      * @param misterilist
-     * @param name
+     *     The misterilist
      */
-    public Misteri(String name, List<String> misterilist) {
-        this.name = name;
+    @JsonProperty("misterilist")
+    public void setMisterilist(List<String> misterilist) {
         this.misterilist = misterilist;
     }
 
@@ -63,26 +66,6 @@ public class Misteri {
     @JsonProperty("name")
     public void setName(String name) {
         this.name = name;
-    }
-
-    /**
-     * 
-     * @return
-     *     The misterilist
-     */
-    @JsonProperty("misterilist")
-    public List<String> getMisterilist() {
-        return misterilist;
-    }
-
-    /**
-     * 
-     * @param misterilist
-     *     The misterilist
-     */
-    @JsonProperty("misterilist")
-    public void setMisterilist(List<String> misterilist) {
-        this.misterilist = misterilist;
     }
 
     @JsonAnyGetter

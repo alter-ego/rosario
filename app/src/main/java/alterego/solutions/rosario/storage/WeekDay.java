@@ -14,63 +14,62 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
-    "introduzione",
+    "Medaglia",
+    "Misteri",
     "decina",
-    "misteri",
-    "medaglia"
+    "introduzione"
 })
 public class WeekDay {
 
-    @JsonProperty("introduzione")
-    private Introduzione introduzione;
+    @JsonProperty("Medaglia")
+    private alterego.solutions.rosario.storage.Medaglia Medaglia;
+    @JsonProperty("Misteri")
+    private alterego.solutions.rosario.storage.Misteri Misteri;
     @JsonProperty("decina")
     private Decina decina;
-    @JsonProperty("misteri")
-    private Misteri misteri;
-    @JsonProperty("medaglia")
-    private Medaglia medaglia;
+    @JsonProperty("introduzione")
+    private Introduzione introduzione;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     * No args constructor for use in serialization
      * 
+     * @return
+     *     The Medaglia
      */
-    public WeekDay() {
+    @JsonProperty("Medaglia")
+    public alterego.solutions.rosario.storage.Medaglia getMedaglia() {
+        return Medaglia;
     }
 
     /**
      * 
-     * @param decina
-     * @param misteri
-     * @param introduzione
-     * @param medaglia
+     * @param Medaglia
+     *     The Medaglia
      */
-    public WeekDay(Introduzione introduzione, Decina decina, Misteri misteri, Medaglia medaglia) {
-        this.introduzione = introduzione;
-        this.decina = decina;
-        this.misteri = misteri;
-        this.medaglia = medaglia;
+    @JsonProperty("Medaglia")
+    public void setMedaglia(alterego.solutions.rosario.storage.Medaglia Medaglia) {
+        this.Medaglia = Medaglia;
     }
 
     /**
      * 
      * @return
-     *     The introduzione
+     *     The Misteri
      */
-    @JsonProperty("introduzione")
-    public Introduzione getIntroduzione() {
-        return introduzione;
+    @JsonProperty("Misteri")
+    public alterego.solutions.rosario.storage.Misteri getMisteri() {
+        return Misteri;
     }
 
     /**
      * 
-     * @param introduzione
-     *     The introduzione
+     * @param Misteri
+     *     The Misteri
      */
-    @JsonProperty("introduzione")
-    public void setIntroduzione(Introduzione introduzione) {
-        this.introduzione = introduzione;
+    @JsonProperty("Misteri")
+    public void setMisteri(alterego.solutions.rosario.storage.Misteri Misteri) {
+        this.Misteri = Misteri;
     }
 
     /**
@@ -96,41 +95,21 @@ public class WeekDay {
     /**
      * 
      * @return
-     *     The misteri
+     *     The introduzione
      */
-    @JsonProperty("misteri")
-    public Misteri getMisteri() {
-        return misteri;
+    @JsonProperty("introduzione")
+    public Introduzione getIntroduzione() {
+        return introduzione;
     }
 
     /**
      * 
-     * @param misteri
-     *     The misteri
+     * @param introduzione
+     *     The introduzione
      */
-    @JsonProperty("misteri")
-    public void setMisteri(Misteri misteri) {
-        this.misteri = misteri;
-    }
-
-    /**
-     * 
-     * @return
-     *     The medaglia
-     */
-    @JsonProperty("medaglia")
-    public Medaglia getMedaglia() {
-        return medaglia;
-    }
-
-    /**
-     * 
-     * @param medaglia
-     *     The medaglia
-     */
-    @JsonProperty("medaglia")
-    public void setMedaglia(Medaglia medaglia) {
-        this.medaglia = medaglia;
+    @JsonProperty("introduzione")
+    public void setIntroduzione(Introduzione introduzione) {
+        this.introduzione = introduzione;
     }
 
     @JsonAnyGetter

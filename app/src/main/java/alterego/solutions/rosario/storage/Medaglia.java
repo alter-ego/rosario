@@ -24,21 +24,6 @@ public class Medaglia {
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Medaglia() {
-    }
-
-    /**
-     * 
-     * @param name
-     */
-    public Medaglia(String name) {
-        this.name = name;
-    }
-
-    /**
      * 
      * @return
      *     The name
