@@ -1,5 +1,8 @@
-package alterego.solutions.rosario
+package alterego.solutions.rosario.main
 
+import alterego.solutions.rosario.App
+import alterego.solutions.rosario.R
+import alterego.solutions.rosario.ScanActivity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -26,20 +29,27 @@ class MainActivity : AppCompatActivity() {
         mSeekark = findViewById(R.id.seekArc) as SeekArc
         mSeekark1 = findViewById(R.id.seekArc1) as SeekArc
 
+        //TODO Check if presenter value Enunciazione value is <=5
+        val mainPresenter = PresenterMain(1, 1)
+
+        mSeekarcprogress.setText(mainPresenter.positionEnunciazione.toString())
+        mSeekark.progress = mainPresenter.positionEnunciazione
+
+
+        mSeekarcprogress1.setText(mainPresenter.positionDecine.toString())
+        mSeekark1.progress = mainPresenter.positionDecine
+
         mSeekark.setOnSeekArcChangeListener(object : SeekArc.OnSeekArcChangeListener {
 
             override fun onProgressChanged(p0: SeekArc?, p1: Int, p2: Boolean) {
-                mSeekarcprogress.setText(p1.toString())
-                mSeekark1.progress = p1
+                //TODO add some reaction in case of modify from android app
             }
 
             override fun onStartTrackingTouch(p0: SeekArc?) {
-                //mSeekarcprogress.setText(p0.toString())
+
             }
 
-            override fun onStopTrackingTouch(p0: SeekArc?) {
-                //mSeekarcprogress.setText(p0.toString())
-            }
+            override fun onStopTrackingTouch(p0: SeekArc?) {}
 
         })
     }

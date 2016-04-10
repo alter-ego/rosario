@@ -76,13 +76,15 @@ kapt {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.2.1'
-
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:design:23.3.0'
     compile 'com.android.support:multidex:1.0.1'
     compile 'com.jakewharton.timber:timber:4.1.0'
+    compile 'com.google.dagger:dagger:2.0.2'
+    compile 'com.facebook.stetho:stetho:1.3.0'
+    compile 'com.github.Triggertrap:SeekArc:v1.1'
 
     // Dagger
-    compile 'com.google.dagger:dagger:2.0.2'
     kapt 'com.google.dagger:dagger-compiler:2.0.2'
     provided 'org.glassfish:javax.annotation:10.0-b28'
 
@@ -95,7 +97,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.4'
 
     // Storage
-    compile 'com.firebase:firebase-client-android:2.5.2+'
+    compile 'com.firebase:firebase-client-android:2.5.2'
 
     // Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -103,6 +105,7 @@ dependencies {
 
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3.1'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3.1'
+
     compile 'com.facebook.stetho:stetho:1.3.0'
 
     compile 'org.udoo:rxudooblulib:0.1'
@@ -112,4 +115,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile "org.mockito:mockito-core:1.9.5"
     testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+
 }
