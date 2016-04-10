@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="alterego.solutions.rosario"
-          xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools">
+<manifest
+  package="alterego.solutions.rosario"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools">
 
   <uses-permission android:name="android.permission.BLUETOOTH"/>
   <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
@@ -30,8 +31,9 @@
       android:name="org.udoo.udooblulib.service.UdooBluService"
       android:exported="false"/>
 
-    <activity android:name=".ScanActivity">
-    </activity>
+    <activity
+      android:name=".ScanActivity"
+      android:label="Settings"/>
 
     <activity android:name=".second.SecondActivity">
     </activity>
