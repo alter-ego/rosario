@@ -22,13 +22,16 @@ class InputButtonManager @Inject constructor(val udooBluManager: UdooBluManager)
 
     var button: BehaviorSubject<Int> = BehaviorSubject.create()
 
+    override fun setup(): Observable<Boolean> {
+        return Observable.timer(2, TimeUnit.SECONDS).concatMap { connect() }
+    }
+
     override fun connect(): Observable<Boolean> {
         return Observable.create {
             val subscriber = it
             udooBluManager.connect(address, object : IBleDeviceListener {
                 override fun onDeviceConnected() {
                     udooBluManager.discoveryServices(address)
-                    subscriber.onNext(true)
                 }
 
                 override fun onDeviceDisconnect() {
@@ -37,25 +40,28 @@ class InputButtonManager @Inject constructor(val udooBluManager: UdooBluManager)
 
                 override fun onServicesDiscoveryCompleted() {
                     val address = address
-                    Timber.d("Address $address")
                     udooBluManager.enableSensor(address, UDOOBLESensor.IOPIN, true)
                     udooBluManager.setIoPinMode(address, Constant.IOPIN.D6, Constant.IOPIN_TYPE.DIGITAL, Constant.IOPIN_MODE.INPUT)
+                    subscriber.onNext(true)
                 }
             })
         }
     }
 
     override fun read(): Observable<Int> {
-        readSubscription = Observable.interval(300, TimeUnit.MILLISECONDS)
+        readSubscription = Observable.interval(500, TimeUnit.MILLISECONDS)
             .subscribe({
                 udooBluManager.digitalRead(address, object : OnCharacteristicsListener {
                     override fun onCharacteristicChanged(uuidStr: String?, rawValue: ByteArray?) {
                         Timber.d("onCharacteristicChanged $uuidStr")
                     }
 
-                    override fun onCharacteristicsRead(uuidStr: String?, value: ByteArray?, status: Int) {
-                        Timber.d("onCharacteristicsRead $uuidStr $value $status")
-                        button.onNext(status)
+                    override fun onCharacteristicsRead(uuidStr: String?, value: ByteArray, status: Int) {
+                        if (value[0].toInt() == 64) {
+                            button.onNext(1)
+                        } else {
+                            button.onNext(0)
+                        }
                     }
                 })
             })

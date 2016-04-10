@@ -8,6 +8,7 @@ import org.udoo.udooblulib.manager.UdooBluManager
 import org.udoo.udooblulib.scan.BluScanCallBack
 import org.udoo.udooblulib.sensor.Constant
 import org.udoo.udooblulib.sensor.UDOOBLESensor
+import rx.Subscription
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -16,6 +17,8 @@ import javax.inject.Singleton
 class ScanPresenter @Inject constructor(val udooBluManager: UdooBluManager) {
 
     lateinit var view: IScanView
+
+    var readSbscription: Subscription? = null
 
     fun startScan() {
         view.hideScanButton()

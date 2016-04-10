@@ -4,6 +4,7 @@ import alterego.solutions.rosario.App
 import alterego.solutions.rosario.R
 import alterego.solutions.rosario.ScanActivity
 import alterego.solutions.rosario.input_button.IInputButtonManager
+import alterego.solutions.rosario.utils.bioparco
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -28,11 +29,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         inputButton
-            .connect()
+            .setup()
             .concatMap { inputButton.read() }
-            .subscribe({
-                Timber.d(it.toString())
-            })
+            .distinctUntilChanged()
+            .subscribe(
+                {
+                    Timber.d(it.toString())
+                },
+                { error -> bioparco(error.message) })
 
         //TODO Check if presenter value Enunciazione value is <=5
         val mainPresenter = PresenterMain(1, 1)
